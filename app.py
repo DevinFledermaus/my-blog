@@ -26,7 +26,6 @@ def fetch_users():
     return new_data
 
 
-users = fetch_users()
 
 
 def init_user_table():
@@ -53,9 +52,10 @@ def init_post_table():
 
 init_user_table()
 init_post_table()
+users = fetch_users()
 
-username_table = { u.username: u for u in users }
-userid_table = { u.id: u for u in users }
+username_table = {u.username: u for u in users}
+userid_table = {u.id: u for u in users}
 
 
 def authenticate(username, password):
@@ -87,7 +87,6 @@ def user_registration():
     response = {}
 
     if request.method == "POST":
-
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         username = request.form['username']
@@ -199,3 +198,7 @@ def get_post(post_id):
         response["data"] = cursor.fetchone()
 
     return jsonify(response)
+
+
+if __name__ == '__main__':
+    app.run()
